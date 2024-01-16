@@ -15,6 +15,21 @@ impl Boilerplate {
         }
     }
 
+    /// Adds arbitrary markup to the body
+    ///
+    /// Note this should *include* the body element itself e.g.
+    /// ```
+    /// boilerplate.body(html! body {
+    ///     p {
+    ///         your body goes here
+    ///     }
+    /// })
+    /// ```
+    pub fn body(mut self, body: Markup) -> Self {
+        self.body = Some(body);
+        self
+    }
+
     /// Adds a css stylesheet link to the head
     ///
     /// ```html
