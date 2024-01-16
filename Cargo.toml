@@ -3,7 +3,12 @@ name = "maud-html-boilerplate"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 maud = "0.26.0"
+rocket = { version = "0.5", optional = true }
+
+[features]
+rocket = ["dep:rocket", "maud/rocket"]
+
+[package.metadata.docs.rs]
+all-features = true

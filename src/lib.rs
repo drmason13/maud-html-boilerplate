@@ -91,3 +91,17 @@ impl maud::Render for Boilerplate {
         page.render_to(buffer)
     }
 }
+
+#[cfg(feature = "rocket")]
+mod rocket_support {
+    use maud::Render;
+    use rocket::{response::Responder, Request};
+
+    use crate::Boilerplate;
+
+    impl<'r> Responder<'r, 'static> for Boilerplate {
+        fn respond_to(self, req: &Request) -> rocket::response::Result<'static> {
+            self.render().respond_to(req)
+        }
+    }
+}
