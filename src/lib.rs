@@ -20,10 +20,11 @@ impl Boilerplate {
     /// ```html
     /// <link rel="stylesheet" type="text/css" href="(self.0)">
     /// ```
-    pub fn link_css(&mut self, href: &'static str) {
+    pub fn link_css(mut self, href: &'static str) -> Self {
         self.links.push(html! {
             link rel="stylesheet" type="text/css" href=(href);
-        })
+        });
+        self
     }
 
     /// Adds an icon link to the head
@@ -31,17 +32,19 @@ impl Boilerplate {
     /// ```html
     /// <link rel="icon" type="text/x-icon" href="(self.0)">
     /// ```
-    pub fn link_icon(&mut self, href: &'static str) {
+    pub fn link_icon(mut self, href: &'static str) -> Self {
         self.links.push(html! {
             link rel="icon" type="text/x-icon" href=(href);
-        })
+        });
+        self
     }
 
     /// Adds arbitrary markup to the head alongisde other links, it's up to you to render the link
     ///
     /// Use this if the available link_* methods don't meet your requirements
-    pub fn link(&mut self, link: Markup) {
+    pub fn link(mut self, link: Markup) -> Self {
         self.links.push(link);
+        self
     }
 }
 
